@@ -2,5 +2,15 @@
 
 cd /server/ && node index.js &
 
+export UPTIME_APP_API_BASE_URL="https://${OSC_HOSTNAME}/api/v1"
+
+for i in $(env | grep UPTIME_APP_)
+do
+    key=$(echo $i | cut -d '=' -f 1)
+    value=$(echo $i | cut -d '=' -f 2-)
+    echo $key=$value
+    find /client/dist -type f \( -name '*.js' -o -name '*.css' \) -exec sed -i "s|${key}|${value}|g" '{}' +
+done
+
 echo "Starting $@"
 exec "$@"

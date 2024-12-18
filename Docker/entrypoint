@@ -3,6 +3,7 @@
 cd /server/ && node index.js &
 
 export UPTIME_APP_API_BASE_URL="https://${OSC_HOSTNAME}/api/v1"
+export CLIENT_HOST="https://${OSC_HOSTNAME}/api/v1"
 
 for i in $(env | grep UPTIME_APP_)
 do
